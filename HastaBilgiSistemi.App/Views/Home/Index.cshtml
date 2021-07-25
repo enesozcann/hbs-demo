@@ -1,0 +1,269 @@
+﻿@model HastaBilgiSistemi.App.Models.PatientHomeViewModel
+@using HastaBilgiSistemi.Shared.Utilities.Results.ComplexTypes
+@{ Layout = "_Layout";
+   ViewBag.Title = "Anasayfa"; 
+}
+@if (Model.LastAppointment.ResultStatus == ResultStatus.Success)
+{
+<section class="section">
+    <div class="row mb-2">
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <img class="card-img img-fluid"
+                         src="assets/images/samples/covid19.jpg"
+                         alt="Card image">
+                    <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                        <div class="overlay-content">
+                            <h4 class="card-title mb-50">Covid-19'la Mücadele</h4>
+                            <p class="card-text text-ellipsis">
+                                Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                                chups.
+                            </p>
+                        </div>
+                        <div class="overlay-status">
+                            <p class="mb-25"><small>Son güncelleme 5 dakika önce</small></p>
+                            <a href="#" class="btn btn-info btn-sm">Devamını oku </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <img class="card-img img-fluid"
+                         src="assets/images/samples/annekarni.jpg"
+                         alt="Card image">
+                    <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                        <div class="overlay-content">
+                            <h4 class="card-title mb-50">Anne Karnında Yaşam</h4>
+                            <p class="card-text text-ellipsis">
+                                Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                                chups.
+                            </p>
+                        </div>
+                        <div class="overlay-status">
+                            <p class="mb-25"><small>Son güncelleme 8 saat önce</small></p>
+                            <a href="#" class="btn btn-info btn-sm">Devamını oku </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <img class="card-img img-fluid"
+                         src="assets/images/samples/cocuk-ve-doga.jpg"
+                         alt="Card image">
+                    <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                        <div class="overlay-content">
+                            <h4 class="card-title mb-50">Doğa ve İnsan</h4>
+                            <p class="card-text text-ellipsis">
+                                Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                                chups.
+                            </p>
+                        </div>
+                        <div class="overlay-status">
+                            <p class="mb-25"><small>Son güncelleme 1 hafta önce</small></p>
+                            <a href="#" class="btn btn-info btn-sm">Devamını oku </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <img class="card-img img-fluid"
+                         src="assets/images/samples/bakteri.jpg"
+                         alt="Card image">
+                    <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                        <div class="overlay-content">
+                            <h4 class="card-title mb-50">Bakteriler</h4>
+                            <p class="card-text text-ellipsis">
+                                Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                                chups.
+                            </p>
+                        </div>
+                        <div class="overlay-status">
+                            <p class="mb-25"><small>Son güncelleme 1 ay önce</small></p>
+                            <a href="#" class="btn btn-info btn-sm">Devamını oku </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Son 10 Randevunuz</h4>
+                    <div class="d-flex ">
+                        <i data-feather="download"></i>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <table class='table mb-0' id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Hasta Bilgisi</th>
+                                    <th>Alan</th>
+                                    <th>Doktor</th>
+                                    <th>Hastane</th>
+                                    <th>Tarih</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var appointment in Model.AppointmentListDto.Appointments)
+                                {
+                                    <tr>
+                                        <td>@appointment.Patient.User.FirstName @appointment.Patient.User.LastName</td>
+                                        <td>@appointment.Doctor.Policlinic.Name</td>
+                                        <td>Dr. @appointment.Doctor.User.FirstName @appointment.Doctor.User.LastName</td>
+                                        <td>@appointment.Doctor.Policlinic.Hospital.Name</td>
+                                        <td>@appointment.AppointmentDate</td>
+                                        <td>
+                                            @if (appointment.IsDeleted)
+                                            {
+                                                <span class="badge bg-danger">İptal Edildi</span>
+                                            }
+                                            else
+                                            {
+                                                @if (appointment.IsActive)
+                                                {
+                                                    <span class="badge bg-info">Aktif</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-success">Tamamlandı</span>
+                                                }
+                                            }
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class='card-heading p-1 pl-3'>Hatırlatmalar</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 col-12">
+                            <div class="pl-3">
+                                <h1 class='mt-5'></h1>
+                                <p class='text-xs'>
+                                    <span class="text-green">
+                                        <i data-feather="bar-chart"
+                                           width="15"></i> 
+                                    </span> Hatırlatılacak olayınız yok
+                                </p>
+                                <div class="legends">
+                                    <div class="legend d-flex flex-row align-items-center">
+                                        <div class='w-3 h-3 rounded-full bg-info me-2'></div><span class='text-xs'>Last Month</span>
+                                    </div>
+                                    <div class="legend d-flex flex-row align-items-center">
+                                        <div class='w-3 h-3 rounded-full bg-blue me-2'></div><span class='text-xs'>Current Month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card widget-todo">
+                <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                    <h4 class="card-title d-flex">
+                        <i class='bx bx-check font-medium-5 pl-25 pr-75'></i>Son Randevu
+                    </h4>
+                </div>
+                <div class="card-body px-0 py-1">
+                    <div class="container">
+                        <div class="row mt-4">
+                            <div class="col">
+                                <div class="text-center">
+                                    <h5 class="card-text text-ellipsis">Ad Soyad</h5>
+                                    <p class="card-text text-ellipsis">
+                                        @Model.LastAppointment.Appointments[0].Patient.User.FirstName @Model.LastAppointment.Appointments[0].Patient.User.LastName
+                                    </p>
+                                    <h5 class="card-text text-ellipsis">Poliklinik</h5>
+                                    <p class="card-text text-ellipsis">
+                                        @Model.LastAppointment.Appointments[0].Doctor.Policlinic.Name
+                                    </p>
+                                    <h5 class="card-text text-ellipsis">Hastane</h5>
+                                    <p class="card-text text-ellipsis">
+                                        @Model.LastAppointment.Appointments[0].Doctor.Policlinic.Hospital.Name
+                                    </p>
+                                    <h5 class="card-text text-ellipsis">Tarih</h5>
+                                    <p class="card-text text-ellipsis">
+                                        @Model.LastAppointment.Appointments[0].AppointmentDate
+                                    </p>
+                                    @if (!Model.LastAppointment.Appointments[0].IsDeleted)
+                                    {
+                                        @if (Model.LastAppointment.Appointments[0].IsActive)
+                                        {
+                                            <div class="alert alert-info">Randevu Durumu: Aktif</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-success">Randevu Durumu: Tamamlandı</div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-danger">Randevu Durumu: İptal Edildi</div>
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                <div class="text-center">
+                                    <img src="~/images/@Model.LastAppointment.Appointments[0].Doctor.User.Picture" class="rounded" alt="Meryem Kaygusuz">
+                                    <h3 class="card-text text-ellipsis mt-2">Dr. @Model.LastAppointment.Appointments[0].Doctor.User.FirstName @Model.LastAppointment.Appointments[0].Doctor.User.LastName</h3>
+                                    <h4 class="card-text text-ellipsis">@Model.LastAppointment.Appointments[0].Doctor.Policlinic.Name</h4>
+                                    <a href="#" class="btn icon icon-left btn-primary">
+                                        <i data-feather="send"></i>
+                                        Mesaj Gönder
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card ">
+                <div class="card-header">
+                    <h4>Nöbetçi Eczane</h4>
+                </div>
+                <div class="card-body">
+                    <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2619.1170757445375!2d39.20335132940793!3d38.679390323714685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c0895a19c2a3%3A0x56a2b23e62945af6!2sF%C4%B1rat%20%C3%9Cniversitesi%20Hastanesi!5e0!3m2!1str!2str!4v1617369805127!5m2!1str!2str" frameborder="0"
+                                style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}
+@if (Model.LastAppointment.ResultStatus == ResultStatus.Error)
+{
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Hata!</h4>
+        <p>@Model.LastAppointment.Message</p>
+    </div>
+}

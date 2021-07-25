@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 - Yetkisiz Erişim</title>
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+
+    <link rel="shortcut icon" href="~/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="~/assets/css/app.css">
+</head>
+
+<body>
+    <div id="error">
+
+        <div class="container text-center pt-32">
+            <h1 class='error-title'>403</h1>
+            <p>Bu sayfaya erişme yetkiniz yok.</p>
+            <a asp-area="" asp-controller="Auth" asp-action="Index" class='btn btn-primary'>Anasayfa'ya dön.</a>
+        </div>
+
+        <div class="footer pt-32">
+            <p class="text-center">Copyright &copy; Hasta Bilgi Sistemi</p>
+        </div>
+    </div>
+</body>
+
+</html>

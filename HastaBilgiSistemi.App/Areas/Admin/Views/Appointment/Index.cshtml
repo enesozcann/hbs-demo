@@ -1,0 +1,81 @@
+﻿@model HastaBilgiSistemi.Entities.Dtos.AppointmentListDto
+@using HastaBilgiSistemi.Shared.Utilities.Results.ComplexTypes;
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Randevu Listesi";
+}
+@if (Model.ResultStatus == ResultStatus.Success)
+{
+    <nav aria-label="breadcrumb" class='breadcrumb-header'>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Admin" asp-action="Index" asp-controller="Home">Yönetim Paneli</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Randevular</li>
+        </ol>
+    </nav>
+    <div id="modalPlaceHolder" aria-hidden="true"></div>
+    <div class="card mt-3">
+        <div class="card-header">
+            Randevu Listesi
+        </div>
+        <div class="card-body">
+            <div class="spinner-border" role="status" style="display:none;">
+                <span class="sr-only">Randevular getiriliyor...</span>
+            </div>
+            <table class='table table-striped' id="appointmentsTable" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Randevu Tarihi</th>
+                        <th>Doktor</th>
+                        <th>Hasta</th>
+                        <th>Poliklinik</th>
+                        <th>Hastane</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Son Güncelleme</th>
+                        <th>Aktiflik Durumu</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var appointment in Model.Appointments)
+                    {
+                        <tr name="@appointment.Id">
+                            <td>@appointment.Id</td>
+                            <td>@appointment.AppointmentDate</td>
+                            <td>@appointment.Doctor.User.FirstName @appointment.Doctor.User.LastName</td>
+                            <td>@appointment.Patient.User.FirstName @appointment.Patient.User.LastName</td>
+                            <td>@appointment.Doctor.Policlinic.Name</td>
+                            <td>@appointment.Doctor.Policlinic.Hospital.Name</td>
+                            <td>@appointment.CreatedDate</td>
+                            <td>@appointment.ModifiedDate</td>
+                            <td>
+                                @if (appointment.IsActive)
+                                {
+                                    <span class="badge bg-success">Aktif</span>
+                                }
+                                else
+                                { <span class="badge bg-danger">Pasif</span>}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-block btn-sm" role="group">
+                                    <button class="btn icon btn-primary btn-edit" data-id="@appointment.Id"><i class="fas fa-edit"></i></button>
+                                    <button class="btn icon btn-danger btn-delete" data-id="@appointment.Id"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+@if (Model.ResultStatus == ResultStatus.Error)
+{
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Hata!</h4>
+        <p>@Model.Message</p>
+    </div>
+}
+@section Scripts{
+    <script src="~/assets/admin/js/appointmentIndex.js" type="application/ecmascript"></script>
+}

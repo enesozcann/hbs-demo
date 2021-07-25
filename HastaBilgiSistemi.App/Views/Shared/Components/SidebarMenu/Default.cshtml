@@ -1,0 +1,207 @@
+﻿@model HastaBilgiSistemi.App.Models.UserViewModel;
+<div id="sidebar" class='active'>
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <img src="~/assets/images/logo.png" alt="" srcset="">
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+                @if (Model.Roles.Any(r => r.Equals("Patient")))
+                {
+                    <li class='sidebar-title'>Ana Menü</li>
+                    <li class="sidebar-item active ">
+                        <a asp-controller="Home" asp-action="Index" class='sidebar-link'>
+                            <i class="fas fa-hospital-symbol fa-2x"></i>
+                            <span>Anasayfa</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  has-sub">
+                        <a asp-action="Index" asp-controller="Appointment" class='sidebar-link'>
+                            <i class="fas fa-calendar-plus fa-2x"></i>
+                            <span>Randevu</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li>
+                                <a asp-action="Add" asp-controller="Appointment">Randevu Oluştur</a>
+                            </li>
+                            <li>
+                                <a asp-action="Index" asp-controller="Appointment">Randevularım</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fas fa-envelope fa-2x"></i>
+                            <span>Mesajlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-microscope fa-2x"></i>
+                            <span>Tahlil Sonuçları</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-file-medical-alt fa-2x"></i>
+                            <span>Raporlarım</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-head-side-cough fa-2x"></i>
+                            <span>Hastalıklarım</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-capsules fa-2x"></i>
+                            <span>İlaçlarım</span>
+                        </a>
+                    </li>
+                    <li class='sidebar-title'>Keşfet</li>
+                    <li class="sidebar-item  ">
+                        <a href="/Doctor/Index" class='sidebar-link'>
+                            <i class="fas fa-user-md fa-2x"></i>
+                            <span>Doktorlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-heartbeat fa-2x"></i>
+                            <span>Poliklinikler</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-allergies fa-2x"></i>
+                            <span>Alerjilerim</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-file-medical-alt fa-2x"></i>
+                            <span>Dokümanlarım</span>
+                        </a>
+                    </li>
+                }
+                @if (Model.Roles.Any(r => r.Equals("Admin")))
+                {
+                    <li class='sidebar-title'>Ana Menü</li>
+                    <li class="sidebar-item active ">
+                        <a class='sidebar-link' asp-area="Admin" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home fa-2x"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fas fa-envelope fa-2x"></i>
+                            <span>Mesajlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-microscope fa-2x"></i>
+                            <span>Tahlil Sonuçları</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a class='sidebar-link' asp-area="Admin" asp-controller="User" asp-action="Index">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span>Kullanıcılar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a class='sidebar-link' asp-area="Admin" asp-controller="Hospital" asp-action="Index">
+                            <i class="fas fa-hospital-symbol fa-2x"></i>
+                            <span>Hastane</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a class='sidebar-link' asp-area="Admin" asp-controller="Appointment" asp-action="Index">
+                            <i class="fas fa-calendar-plus fa-2x"></i>
+                            <span>Randevular</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-capsules fa-2x"></i>
+                            <span>İlaçlar</span>
+                        </a>
+                    </li>
+                    <li class='sidebar-title'>Keşfet</li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-user-md fa-2x"></i>
+                            <span>Doktorlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-heartbeat fa-2x"></i>
+                            <span>Departmanlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-file-medical-alt fa-2x"></i>
+                            <span>Dokümanlar</span>
+                        </a>
+                    </li>
+                }
+                @if (Model.Roles.Any(r => r.Equals("Doctor")))
+                {
+                    <li class='sidebar-title'>Ana Menü</li>
+                    <li class="sidebar-item active ">
+                        <a class='sidebar-link' asp-area="Doctor" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home fa-2x"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fas fa-envelope fa-2x"></i>
+                            <span>Mesajlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  has-sub">
+                        <a asp-area="Doctor" asp-action="Index" asp-controller="Appointment" class='sidebar-link'>
+                            <i class="fas fa-calendar-plus fa-2x"></i>
+                            <span>Randevu</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li>
+                                <a asp-area="Doctor" asp-action="Today" asp-controller="Appointment">Günün Randevuları</a>
+                            </li>
+                            <li>
+                                <a asp-area="Doctor" asp-action="Index" asp-controller="Appointment">Randevu Geçmişi</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="form-layout.html" class='sidebar-link'>
+                            <i class="fas fa-capsules fa-2x"></i>
+                            <span>İlaçlar</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a asp-area="Doctor" asp-action="Index" asp-controller="Patient" class='sidebar-link'>
+                            <i class="fas fa-user-injured fa-2x"></i>
+                            <span>Hastalar</span>
+                        </a>
+                    </li>
+                }
+                <li class='sidebar-title'>HIZLI ERİŞİM</li>
+                <li class="sidebar-item  ">
+                    <a class='sidebar-link' asp-area="" asp-controller="Account" asp-action="ChangeDetails">
+                        <i class="fas fa-user-cog fa-2x"></i>
+                        <span>Hesap Ayarları</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+    </div>
+</div>

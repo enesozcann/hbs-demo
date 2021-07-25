@@ -1,0 +1,74 @@
+﻿@model HastaBilgiSistemi.App.Models.AppointmentAddViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Randevu Oluştur";
+}
+<nav aria-label="breadcrumb" class='breadcrumb-header'>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Anasayfa</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Appointment">Randevular</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Randevu Oluştur</li>
+    </ol>
+</nav>
+<form asp-controller="Appointment" asp-action="Add" method="post">
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Randevu Oluştur
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="hospitalList">Hastane</label>
+                        <select id="hospitalList" class="form-control" asp-items="@(new SelectList(Model.Hospitals,"Id","Name"))">
+                            <option></option>
+                        </select>
+                        <div class="form-group">
+                            <label for="polyclinicList">Poliklinik</label>
+                            <select id="polyclinicList" class="form-control">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctorList" asp-for="DoctorId"></label>
+                            <select id="doctorList" class="form-control" asp-for="DoctorId">
+                                <option></option>
+                            </select>
+                            <span asp-validation-for="DoctorId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="datepicker" asp-for="AppointmentDate"></label>
+                            <input for="datepicker" type="text" id="datepicker" readonly="readonly" value="@DateTime.Now.ToShortDateString()" asp-for="AppointmentDate" />
+                            <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block mt-4">Randevu Oluştur</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Son Randevum</div>
+                <div class="card-body">
+                    Aa
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/select2@@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="~/assets/js/pages/appointmentAdd.js" type="application/ecmascript"></script>
+}
+@section Styles{
+    <link href="https://cdn.jsdelivr.net/npm/select2@@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" integrity="sha512-ug/p2fTnYRx/TfVgL8ejTWolaq93X+48/FLS9fKf7AiazbxHkSEENdzWkOxbjJO/X1grUPt9ERfBt21iLh2dxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/theme.min.css" integrity="sha512-adRIgePtMQgAVB+Mfkhl+Nyva/WllWlFzJyyhYCjznU3Di+Z4SsYi1Rqsep11PYLpUsW/SjE4NXUkIjabQJCOQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
+    <link href="~/assets/vendors/select2/select2-bootstrap4.min.css" rel="stylesheet" />
+}

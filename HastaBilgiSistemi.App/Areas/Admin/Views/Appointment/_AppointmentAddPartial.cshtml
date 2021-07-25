@@ -1,0 +1,53 @@
+﻿@model HastaBilgiSistemi.Entities.Dtos.AppointmentAddDto
+    <!--primary theme Modal -->
+    <div class="modal fade text-left" id="primary" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel160"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+             role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white" id="myModalLabel160">
+                        Randevu Ekle
+                    </h5>
+                    <button type="button" class="close"
+                            data-bs-dismiss="modal" aria-label="İptal">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="Add" id="form-appointment-add">
+                        <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()"/>
+                        <div asp-validation-summary="All" class="text-danger" id="validation-summary" aria-hidden="true" style="display:none;"></div>
+                        <div class="form-group">
+                            <label asp-for="Doctor"></label>
+                            <input class="form-control" asp-for="Doctor" />
+                            <span class="text-danger" asp-validation-for="Doctor"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="AppointmentDate"></label>
+                            <input class="form-control" asp-for="AppointmentDate" />
+                            <span class="text-danger" asp-validation-for="AppointmentDate"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="form-check-input" asp-for="IsActive" />
+                            <label asp-for="IsActive" class="form-check-label"></label>
+                            <span class="text-danger" asp-validation-for="IsActive"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-light-secondary"
+                            data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">İptal</span>
+                    </button>
+                    <button type="button" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block" id="btnSave">Kaydet</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

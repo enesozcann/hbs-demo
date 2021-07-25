@@ -1,0 +1,66 @@
+﻿@model HastaBilgiSistemi.Entities.Dtos.UserLoginDto
+@{
+    Layout = "_LoginLayout";
+    ViewBag.Title = "Giriş";
+}
+<div class="text-center mb-5">
+    <img src="~/assets/images/logo.png" height="48" class='mb-4'>
+</div>
+<form asp-controller="Auth" asp-action="Login" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group position-relative has-icon-left">
+        <label asp-for="UserName"></label>
+        <div class="position-relative">
+            <input asp-for="UserName" class="form-control" placeholder="Lütfen kullanıcı adınızı giriniz." />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+            <div class="form-control-icon">
+                <i data-feather="user"></i>
+            </div>
+        </div>
+    </div>
+    <div class="form-group position-relative has-icon-left">
+        <div class="clearfix">
+            <label asp-for="Password"></label>
+            <a href="auth-forgot-password.html" class='float-end'>
+                <small>Parolanı mı unuttun?</small>
+            </a>
+        </div>
+        <div class="position-relative">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Lütfen parolanızı giriniz." />
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="form-control-icon">
+                <i data-feather="lock"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class='form-check clearfix my-4'>
+        <div class="checkbox float-start">
+            <input asp-for="RememberMe" class='form-check-input' type="checkbox" />
+            <label asp-for="RememberMe"></label>
+        </div>
+        <div class="float-end">
+            <a href="auth-register.html">Hesabın yok mu?</a>
+        </div>
+    </div>
+    <div class="clearfix">
+        <button class="btn btn-primary float-end" type="submit">Giriş Yap</button>
+    </div>
+</form>
+<div class="divider">
+    <div class="divider-text">Diğer seçenekler</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <button class="btn btn-block mb-2 btn-danger">
+            <i data-feather="triangle"></i>
+            E Devlet Girişi
+        </button>
+    </div>
+    <div class="col-sm-6">
+        <button class="btn btn-block mb-2 btn-secondary">
+            <i data-feather="shield"></i>
+            Yönetici Girişi
+        </button>
+    </div>
+</div>

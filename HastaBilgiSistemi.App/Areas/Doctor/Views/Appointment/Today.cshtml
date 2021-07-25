@@ -1,0 +1,85 @@
+﻿@model HastaBilgiSistemi.Entities.Dtos.AppointmentListDto
+@using HastaBilgiSistemi.Shared.Utilities.Results.ComplexTypes
+@{ Layout = "_Layout";
+    ViewBag.Title = "Günün Randevuları"; }
+@if (Model.ResultStatus == ResultStatus.Success)
+{
+<nav aria-label="breadcrumb" class='breadcrumb-header'>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Anasayfa</a></li>
+        <li class="breadcrumb-item " aria-current="page">Randevu</li>
+        <li class="breadcrumb-item active" aria-current="page">Günün Randevuları</li>
+    </ol>
+</nav>
+                <div id="modalPlaceHolder" aria-hidden="true"></div>
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        Randevu Listesi
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="spinner-border" role="status" style="display:none;">
+                                            <span class="sr-only">Randevular getiriliyor...</span>
+                                        </div>
+                                        <table class='table table-striped' id="appointmentsTable" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Randevu Tarihi</th>
+                                                    <th>Hasta</th>
+                                                    <th>TC NO</th>
+                                                    <th>Oluşturma Tarihi</th>
+                                                    <th>Son Güncelleme</th>
+                                                    <th>Aktiflik Durumu</th>
+                                                    <th>İşlemler</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var appointment in Model.Appointments)
+                                                {
+                                <tr name="@appointment.Id">
+                                    <td>@appointment.Id</td>
+                                    <td>@appointment.AppointmentDate</td>
+                                    <td>@appointment.Patient.User.FirstName @appointment.Patient.User.LastName</td>
+                                    <td>@appointment.Patient.IdentityNumber</td>
+                                    <td>@appointment.CreatedDate</td>
+                                    <td>@appointment.ModifiedDate</td>
+                                    <td>
+                                        @if (appointment.IsDeleted)
+                                        {
+                    <span class="badge bg-danger" data-id="@appointment.Id">İptal Edildi</span> }
+                else
+                {
+@if (appointment.IsActive)
+{
+<span class="badge bg-info" data-id="@appointment.Id">Aktif</span> }
+else
+{
+<span class="badge bg-success" data-id="@appointment.Id">Tamamlandı</span>}}
+                                    </td>
+                                    <td>
+                                        @if (appointment.IsDeleted)
+                                        {
+                    <span></span> }
+                else
+                {
+@if (appointment.IsActive)
+{
+<button class="btn icon icon-left btn-outline-info btn-detail" data-id="@appointment.Id"><i class="fas fa-plus-circle"></i>Randevu Getir</button> }
+else
+{
+<span></span>}}
+                                    </td>
+                                </tr>}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>}
+@if (Model.ResultStatus == ResultStatus.Error)
+{
+<div class="alert alert-danger">
+    <h4 class="alert-heading">Hata!</h4>
+    <p>@Model.Message</p>
+</div>}
+@section Scripts{
+    <script src="~/assets/doctor/js/appointmentToday.js"></script>
+}

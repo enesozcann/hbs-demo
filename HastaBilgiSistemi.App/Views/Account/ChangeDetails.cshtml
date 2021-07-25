@@ -1,0 +1,85 @@
+﻿@model HastaBilgiSistemi.Entities.Dtos.UserUpdateDto
+@{ Layout = "_Layout";
+   ViewBag.Title = "Hesap Bilgilerini Düzenle"; }
+<div class="col-xl-4 col-md-6 col-sm-12 offset-4">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <h4 class="card-title">Hesap Bilgilerini Düzenle</h4>
+                <form asp-controller="Account" asp-action="ChangeDetails" method="post" enctype="multipart/form-data" id="form-user-update">
+                    <div asp-validation-summary="All" class="text-danger" id="validation-summary"></div>
+                    <input asp-for="Id" type="hidden" />
+                    <div class="form-group has-icon-left">
+                        <label asp-for="UserName"></label>
+                        <div class="position-relative">
+                            <input class="form-control" asp-for="UserName" placeholder="Lütfen, kullanıcı adı giriniz." />
+                            <span class="text-danger" asp-validation-for="UserName"></span>
+                            <div class="form-control-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-icon-left">
+                        <label asp-for="FirstName"></label>
+                        <div class="position-relative">
+                            <input class="form-control" asp-for="FirstName" placeholder="Lütfen, ad giriniz." />
+                            <span class="text-danger" asp-validation-for="FirstName"></span>
+                            <div class="form-control-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-icon-left">
+                        <label asp-for="LastName"></label>
+                        <div class="position-relative">
+                            <input class="form-control" asp-for="LastName" placeholder="Lütfen, soyad giriniz." />
+                            <span class="text-danger" asp-validation-for="LastName"></span>
+                            <div class="form-control-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-icon-left">
+                        <label asp-for="Email"></label>
+                        <div class="position-relative">
+                            <input class="form-control" asp-for="Email" placeholder="Lütfen, e-posta adresi giriniz." />
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                            <div class="form-control-icon">
+                                <i class="fas fa-at"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-icon-left">
+                        <label asp-for="PhoneNumber"></label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Lütfen, telefon numaranızı giriniz." />
+                            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                            <div class="form-control-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Picture" type="hidden" />
+                        <img class="img-fluid img-thumbnail" src="~/images/@Model.Picture" alt="@Model.UserName" />
+                    </div>
+                    <div class="form-group has-icon-left">
+                        <label asp-for="PictureFile"></label>
+                        <div class="position-relative">
+                            <input type="file" accept="image/png" class="form-control" asp-for="PictureFile" placeholder="Lütfen, bir fotoğraf yükleyiniz." />
+                            <span class="text-danger" asp-validation-for="PictureFile"></span>
+                            <div class="form-control-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-icon icon-left btn-lg btn-danger btn-block"><i class="fas fa-times-circle"></i>İptal</button>
+                        <button type="submit" class="btn btn-icon icon-left btn-lg btn-info btn-block"><i class="fas fa-save"></i>Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

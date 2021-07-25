@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Hasta Bilgi Sistemi </title>
+    <!--CSS Begin-->
+    @await Html.PartialAsync("_LayoutPartialCss")
+    <!--CSS End-->
+    <link rel="shortcut icon" href="~/assets/images/favicon1.svg" type="image/x-icon">
+</head>
+<body>
+    <div id="app">
+        <!--Sidebar Menu Begin-->
+        @await Component.InvokeAsync("SidebarMenu")
+        <!--Sidebar Menu End-->
+        <div id="main">
+            <!--Navbar Menu Begin-->
+            @await Component.InvokeAsync("NavbarMenu")
+            <!--Navbar Menu End-->
+            <div class="main-content container-fluid">
+                <!--Main Content Begin-->
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                @RenderBody()
+                <!--Main Content End-->
+            </div>
+            <!--Footer Begin-->
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-end">
+                        <p>2021 &copy; Hasta Bilgi Sistemi</p>
+                    </div>
+                </div>
+            </footer>
+            <!--Footer End-->
+        </div>
+    </div>
+    @await Html.PartialAsync("_LayoutPartialJs")
+    @await RenderSectionAsync("Scripts", false)
+    @await RenderSectionAsync("Styles", false)
+</body>
+</html>

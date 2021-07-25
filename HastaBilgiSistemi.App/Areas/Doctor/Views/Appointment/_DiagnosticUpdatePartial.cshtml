@@ -1,0 +1,52 @@
+﻿@model HastaBilgiSistemi.Entities.Dtos.DiagnosticUpdateDto
+    <!--primary theme Modal -->
+<div class="modal fade text-left" id="primary" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel160"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+         role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title white" id="myModalLabel160">
+                    Tanı Düzenle
+                </h5>
+                <button type="button" class="close"
+                        data-bs-dismiss="modal" aria-label="İptal">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="DiagnosticUpdate" id="form-diagnostic-update">
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="DoctorId" type="hidden" />
+                    <input type="hidden" asp-for="PatientId" />
+                    <input type="hidden" asp-for="AppointmentId" />
+                    <div asp-validation-summary="All" class="text-danger" id="validation-summary" aria-hidden="true" style="display:none;"></div>
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input class="form-control" asp-for="Name" />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Detail"></label>
+                        <input class="form-control" asp-for="Detail" />
+                        <span class="text-danger" asp-validation-for="Detail"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">İptal</span>
+                </button>
+                <button type="button" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block" id="btnSave">Kaydet</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿@using HastaBilgiSistemi.Shared.Utilities.Results.ComplexTypes;
+@model HastaBilgiSistemi.Entities.Dtos.HospitalListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Hastane Listesi";
+}
+@if (Model.ResultStatus == ResultStatus.Success)
+{
+    <nav aria-label="breadcrumb" class='breadcrumb-header'>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Admin" asp-action="Index" asp-controller="Home">Yönetim Paneli</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Hastaneler</li>
+        </ol>
+    </nav>
+    <div id="modalPlaceHolder" aria-hidden="true"></div>
+    <div class="card mt-3">
+        <div class="card-header">
+            Hastane Listesi
+        </div>
+        <div class="card-body">
+            <div class="spinner-border" role="status" style="display:none;">
+                <span class="sr-only">Hastaneler getiriliyor...</span>
+            </div>
+            <table class='table table-striped' id="hospitalsTable" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Adı</th>
+                        <th>Adres</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Son Güncelleme</th>
+                        <th>Aktiflik Durumu</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Adı</th>
+                        <th>Adres</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Son Güncelleme</th>
+                        <th>Aktiflik Durumu</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var hospital in Model.Hospitals)
+                    {
+                        <tr name="@hospital.Id">
+                            <td>@hospital.Id</td>
+                            <td>@hospital.Name</td>
+                            <td>@hospital.Address</td>
+                            <td>@hospital.CreatedDate</td>
+                            <td>@hospital.ModifiedDate</td>
+                            <td>
+                                @if (hospital.IsActive)
+                                {
+                                    <span class="badge bg-success">Aktif</span>
+                                }
+                                else
+                                { <span class="badge bg-danger">Pasif</span>}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-block btn-sm" role="group">
+                                    <button class="btn icon btn-primary btn-edit" data-id="@hospital.Id"><i class="fas fa-edit"></i></button>
+                                    <button class="btn icon btn-danger btn-delete" data-id="@hospital.Id"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+@if (Model.ResultStatus == ResultStatus.Error)
+{
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Hata!</h4>
+        <p>@Model.Message</p>
+    </div>
+}
+@section Scripts{
+    <script src="~/assets/admin/js/hospitalIndex.js" type="application/ecmascript"></script>
+}
