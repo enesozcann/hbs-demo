@@ -1,6 +1,5 @@
 # HastaBilgiSistemi-Demo
- ASP.Net 5.0 MVC
- N-Tier Architecture
- Entity Framework
- Microsoft Indetity
- Asp.NET Core Identity
+ ASP.Net 5.0 MVC, 
+ N-Tier Architecture, 
+ Entity Framework, 
+ Asp.NET Core Identity, 
