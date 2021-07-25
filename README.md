@@ -1,3 +1,3 @@
 # hbs-demo
 HastaBilgiSistemi-Demo
-ASP.Net Core MVC + Katmanlı Mimari Geliştirme
+ASP.Net Core MVC + N-Tier Architecture
