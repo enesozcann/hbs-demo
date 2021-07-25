@@ -4,4 +4,3 @@
  Entity Framework
  Microsoft Indetity
  Asp.NET Core Identity
-
